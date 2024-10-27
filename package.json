@@ -1,0 +1,20 @@
+{
+  "name": "auto_sice",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch src/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^4.21.1",
+    "puppeteer": "^23.6.0",
+    "puppeteer-core": "^23.6.0",
+    "read-excel-file": "^5.8.6"
+  }
+}
