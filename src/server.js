@@ -9,10 +9,10 @@ import alunos from './datas_alunos.js';
   await page.goto('https://sice-orientador.seduc.ce.gov.br/sice-orientador/login.jsf');
 
   // Preenche o campos de login
-  await page.type('#formTable\\:j_idt113\\:txtlg', '06823800321');
-  await page.type('#formTable\\:j_idt125\\:txtpw', 'ac0221');// Substitua '#campoSenha' pelo seletor correto do campo de senha
+  await page.type('#formTable\\:j_idt134\\:txtlg', '06823800321');
+  await page.type('#formTable\\:j_idt141\\:txtpw', 'ac0221');// Substitua '#campoSenha' pelo seletor correto do campo de senha
   // Clica no botão (por exemplo, botão de login)
-  await page.click('#formTable\\:j_idt134\\:j_idt135');  // Substitua '#botaoLogin' pelo seletor correto do botão de login
+  await page.click('#formTable\\:j_idt148\\:j_idt149');  // Substitua '#botaoLogin' pelo seletor correto do botão de login
 
   // Aguarda a navegação (se a ação de clicar no botão for redirecionar para outra página)
   await page.waitForNavigation();
