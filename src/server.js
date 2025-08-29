@@ -9,11 +9,10 @@ import alunos from './datas_alunos.js';
   await page.goto('https://sice-orientador.seduc.ce.gov.br/sice-orientador/login.jsf');
 
   // Preenche o campos de login
-  await page.type('#formTable\\:j_idt134\\:txtlg', '06823800321');
-  await page.type('#formTable\\:j_idt141\\:txtpw', 'ac0221');// Substitua '#campoSenha' pelo seletor correto do campo de senha
+  await page.type('#formTable\\:j_idt132\\:txtlg', '06823800321');
+  await page.type('#formTable\\:j_idt142\\:txtpw', 'ac0221');// Substitua '#campoSenha' pelo seletor correto do campo de senha
   // Clica no botão (por exemplo, botão de login)
-  await page.click('#formTable\\:j_idt148\\:j_idt149');  // Substitua '#botaoLogin' pelo seletor correto do botão de login
-
+  await page.click('#formTable\\:j_idt149\\:j_idt150');  // Substitua '#botaoLogin' pelo seletor correto do botão de login
   // Aguarda a navegação (se a ação de clicar no botão for redirecionar para outra página)
   await page.waitForNavigation();
 
@@ -41,7 +40,7 @@ import alunos from './datas_alunos.js';
     await new Promise(resolve => setTimeout(resolve, 10000));
     await page.waitForSelector('#ano', { visible: true });
     await page.click('#ano')
-    await page.select('#ano', '2024');  // Seleciona o ano "2024"
+    await page.select('#ano', '2025');  // Seleciona o ano "2025"
 
     // seleciona aluno
     await new Promise(resolve => setTimeout(resolve, 15000)); // espera 5 segundos
@@ -61,7 +60,7 @@ import alunos from './datas_alunos.js';
     await page.focus('#j_idt222');
     await page.select('#j_idt222', `${aluno.value_concedente}`); // Seleciona o value do concedente do aluno atual
 
-    // // data tem que fazer isso aqaui funcionar
+    // DATAS DA VISITA
     await new Promise(resolve => setTimeout(resolve, 30000)); // espera 20 segundos
     await page.waitForSelector('#dtVisita_input', { visible: true });
     await page.focus('#dtVisita_input');
@@ -83,21 +82,61 @@ import alunos from './datas_alunos.js';
     await page.click('input[id="atividade:116:j_idt246:1"]');
     await page.click('input[id="atividade:117:j_idt246:1"]');
 
-    if (aluno.concedente == "Online Telecom Ibiapina" ||
-      aluno.concedente == "Wnet" ||
+    if (
+      aluno.concedente == "Online Telecom Ibiapina" ||
+      aluno.concedente == "MundiNet-Ibiapina" ||
+      aluno.concedente == "MundiNet-Ubajara" ||
       aluno.concedente == "Online Telecom Ubajara") {
-      // Imputs de atividades
-      await new Promise(resolve => setTimeout(resolve, 10000)); // espera 5 segundos
-      await page.click('input[id="atividade:2:j_idt246:1"]');
-      await page.click('input[id="atividade:79:j_idt246:1"]');
-      await page.click('input[id="atividade:118:j_idt246:1"]');
-      await page.click('input[id="atividade:119:j_idt246:1"]');
-      await page.click('input[id="atividade:120:j_idt246:1"]');
-      await page.click('input[id="atividade:121:j_idt246:1"]');
-      await page.click('input[id="atividade:122:j_idt246:1"]');
-      await page.click('input[id="atividade:134:j_idt246:1"]');
-      await page.click('input[id="atividade:135:j_idt246:1"]');
-    } else if (aluno.concedente == "Copy Nort" || aluno.concedente == "Ematerce") {
+
+      if (aluno.value_aluno == 2630806 || aluno.value_aluno == 4172147 || aluno.value_aluno == 3048771
+        || aluno.value_aluno == 3835531) { //natiele, samyle, aria vitoria, debora pereira
+
+        //atividades extras
+        await new Promise(resolve => setTimeout(resolve, 5000)); // espera 5 segundos
+        await page.click('#j_idt253');
+        await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
+        await page.waitForSelector('#atvdSug'); // Aguarda o campo estar disponível
+        await page.evaluate(() => {
+          document.querySelector('#atvdSug').value = 'REALIZA ATIVIDADES COM USO DOS SISTEMAS DA CONCEDENTE';
+        });
+        await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
+        await page.waitForSelector('#respSug', { visible: true }); // Espera o seletor após o clique
+        await page.select('#respSug', 'RCA'); //REALIZOU COM AUXILIO
+        await new Promise(resolve => setTimeout(resolve, 1000)); // espera 5 segundos
+        await page.waitForSelector('#j_idt260', { visible: true });
+        await page.click('#j_idt260');
+
+        //atividades extras
+        await new Promise(resolve => setTimeout(resolve, 5000)); // espera 5 segundos
+        // await page.click('#j_idt253');
+        // await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
+        await page.waitForSelector('#atvdSug'); // Aguarda o campo estar disponível
+        await page.evaluate(() => {
+          document.querySelector('#atvdSug').value = 'REALIZA ATENDIMENTO AOS CLIENTES DA CONCEDENTE';
+        });
+        await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
+        await page.waitForSelector('#respSug', { visible: true }); // Espera o seletor após o clique
+        await page.select('#respSug', 'RCA'); //REALIZOU COM AUXILIO
+        await new Promise(resolve => setTimeout(resolve, 1000)); // espera 5 segundos
+        await page.waitForSelector('#j_idt260', { visible: true });
+        await page.click('#j_idt260');
+
+      } else {
+        // Imputs de atividades
+        await new Promise(resolve => setTimeout(resolve, 10000)); // espera 5 segundos
+        await page.click('input[id="atividade:2:j_idt246:1"]');
+        await page.click('input[id="atividade:79:j_idt246:1"]');
+        await page.click('input[id="atividade:118:j_idt246:1"]');
+        await page.click('input[id="atividade:119:j_idt246:1"]');
+        await page.click('input[id="atividade:120:j_idt246:1"]');
+        await page.click('input[id="atividade:121:j_idt246:1"]');
+        await page.click('input[id="atividade:122:j_idt246:1"]');
+        await page.click('input[id="atividade:134:j_idt246:1"]');
+        await page.click('input[id="atividade:135:j_idt246:1"]');
+      }
+
+    } else if
+      (aluno.concedente == "Copy Nort" || aluno.concedente == "Ematerce" || aluno.concedente == "Alpha Informática") {
       await new Promise(resolve => setTimeout(resolve, 5000)); // espera 5 segundos
       await page.click('input[id="atividade:74:j_idt246:1"]');
       await page.click('input[id="atividade:101:j_idt246:1"]');
@@ -110,7 +149,7 @@ import alunos from './datas_alunos.js';
       await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
       await page.waitForSelector('#atvdSug'); // Aguarda o campo estar disponível
       await page.evaluate(() => {
-        document.querySelector('#atvdSug').value = 'REALIZOU MANUTENÇÃO CORRETIVA/PREVENTIVA EM IMPRESSORAS';
+        document.querySelector('#atvdSug').value = 'REALIZOU MANUTENÇÃO CORRETIVA/PREVENTIVA EM COMPUTADORES E IMPRESSORAS';
       });
       await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
       await page.waitForSelector('#respSug', { visible: true }); // Espera o seletor após o clique
@@ -125,19 +164,15 @@ import alunos from './datas_alunos.js';
       await page.click('input[id="atividade:101:j_idt246:1"]');
       await page.click('input[id="atividade:123:j_idt246:1"]');
       await page.click('input[id="atividade:124:j_idt246:1"]');
-    } else if (aluno.concedente == "73ª zona eleitoral" ||
-      aluno.concedente == "MundiNet" ||
-      aluno.concedente == "Auto escola Ubajara" ||
-      aluno.concedente == "Quem-Me-Quer" ||
-      aluno.concedente == "Setor de Tributos" ||
-      aluno.concedente == "Sme-Ubajara") {
+
+      //ATIBLIDADES COMPLEMENTARES
 
       await new Promise(resolve => setTimeout(resolve, 5000)); // espera 5 segundos
       await page.click('#j_idt253');
       await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
       await page.waitForSelector('#atvdSug'); // Aguarda o campo estar disponível
       await page.evaluate(() => {
-        document.querySelector('#atvdSug').value = 'GERENCIOU ATIVIDADE POR MEIO DO SISTEMA UTILIZADO PELA CONCEDENTE';
+        document.querySelector('#atvdSug').value = 'MANUTENÇÕES CORRETIVAS/PREVENTIVAS EM IMPRESSORAS.';
       });
       await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
       await page.waitForSelector('#respSug', { visible: true }); // Espera o seletor após o clique
@@ -146,16 +181,36 @@ import alunos from './datas_alunos.js';
       await page.waitForSelector('#j_idt260', { visible: true });
       await page.click('#j_idt260');
 
-
-
-    } else if (aluno.concedente == "Dra. Lorena Costa") {
+    } else if (aluno.concedente == "Mercantil Tio Augusto") {
+      await new Promise(resolve => setTimeout(resolve, 5000)); // espera 5 segundos
+      await page.click('input[id="atividade:15:j_idt246:1"]');
+      await page.click('input[id="atividade:33:j_idt246:1"]');
+      await page.click('input[id="atividade:95:j_idt246:1"]');
 
       await new Promise(resolve => setTimeout(resolve, 5000)); // espera 5 segundos
       await page.click('#j_idt253');
       await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
       await page.waitForSelector('#atvdSug'); // Aguarda o campo estar disponível
       await page.evaluate(() => {
-        document.querySelector('#atvdSug').value = 'REALIZA ATIVIDADES VOLTADAS PARA SOCIAL MEDIA DA CONCEDENTE';
+        document.querySelector('#atvdSug').value = 'CRIAR DESIGN UTILIZANDO FERRAMENTA CANVA PARA DIVULGAÇÃO DE PRODUTOS, PROMOÇÕES E SOCIAL MEDIA.';
+      });
+      await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
+      await page.waitForSelector('#respSug', { visible: true }); // Espera o seletor após o clique
+      await page.select('#respSug', 'RCA'); //REALIZOU COM AUXILIO
+      await new Promise(resolve => setTimeout(resolve, 1000)); // espera 5 segundos
+      await page.waitForSelector('#j_idt260', { visible: true });
+      await page.click('#j_idt260');
+
+    } else if (
+      aluno.concedente == "Quem-Me-Quer" ||
+      aluno.concedente == "Sme-Ubajara") {
+
+      await new Promise(resolve => setTimeout(resolve, 5000)); // espera 5 segundos
+      await page.click('#j_idt253');
+      await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
+      await page.waitForSelector('#atvdSug'); // Aguarda o campo estar disponível
+      await page.evaluate(() => {
+        document.querySelector('#atvdSug').value = 'GERENCIOU ATIVIDADE POR MEIO DO SISTEMA UTILIZADO PELA CONCEDENTE';
       });
       await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
       await page.waitForSelector('#respSug', { visible: true }); // Espera o seletor após o clique
@@ -181,29 +236,130 @@ import alunos from './datas_alunos.js';
       await page.waitForSelector('#j_idt260', { visible: true });
       await page.click('#j_idt260');
 
-    } else if (aluno.concedente == "Dr. Paulo Guimarães") {
+    } else if (aluno.concedente == "Construtora Imobiliaria 3 Marias") {
 
       await new Promise(resolve => setTimeout(resolve, 5000)); // espera 5 segundos
-      await page.click('input[id="atividade:23:j_idt246:1"]');
-      await page.click('input[id="atividade:32:j_idt246:1"]');
-      await page.click('input[id="atividade:54:j_idt246:1"]');
-      await page.click('input[id="atividade:90:j_idt246:1"]');
-      await page.click('input[id="atividade:150:j_idt246:1"]');
+      await page.click('input[id="atividade:85:j_idt246:1"]');
+      await page.click('input[id="atividade:95:j_idt246:1"]');
+      await page.click('input[id="atividade:40:j_idt246:1"]');
+      await page.click('input[id="atividade:56:j_idt246:1"]');
+
+      //atividades extras
+      await new Promise(resolve => setTimeout(resolve, 5000)); // espera 5 segundos
+      await page.click('#j_idt253');
+      await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
+      await page.waitForSelector('#atvdSug'); // Aguarda o campo estar disponível
+      await page.evaluate(() => {
+        document.querySelector('#atvdSug').value = 'ATENDIMENTO AOS CLIENTES DA CONCEDENTE.';
+      });
+      await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
+      await page.waitForSelector('#respSug', { visible: true }); // Espera o seletor após o clique
+      await page.select('#respSug', 'RCA'); //REALIZOU COM AUXILIO
+      await new Promise(resolve => setTimeout(resolve, 1000)); // espera 5 segundos
+      await page.waitForSelector('#j_idt260', { visible: true });
+      await page.click('#j_idt260');
 
       //atividades extras
       // await new Promise(resolve => setTimeout(resolve, 5000)); // espera 5 segundos
       // await page.click('#j_idt253');
-      // await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
-      // await page.waitForSelector('#atvdSug'); // Aguarda o campo estar disponível
-      // await page.evaluate(() => {
-      //   document.querySelector('#atvdSug').value = 'REALIZAR ATIVIDADES JURÍDICAS';
-      // });
-      // await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
-      // await page.waitForSelector('#respSug', { visible: true }); // Espera o seletor após o clique
-      // await page.select('#respSug', 'RCA'); //REALIZOU COM AUXILIO
-      // await new Promise(resolve => setTimeout(resolve, 1000)); // espera 5 segundos
-      // await page.waitForSelector('#j_idt260', { visible: true });
-      // await page.click('#j_idt260');
+      await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
+      await page.waitForSelector('#atvdSug'); // Aguarda o campo estar disponível
+      await page.evaluate(() => {
+        document.querySelector('#atvdSug').value = 'REALIZA DESIGN PARA REDES SOCIAIS E IMPRESSÕES DA CONCEDENTE.';
+      });
+      await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
+      await page.waitForSelector('#respSug', { visible: true }); // Espera o seletor após o clique
+      await page.select('#respSug', 'RCA'); //REALIZOU COM AUXILIO
+      await new Promise(resolve => setTimeout(resolve, 1000)); // espera 5 segundos
+      await page.waitForSelector('#j_idt260', { visible: true });
+      await page.click('#j_idt260');
+
+    } else if (aluno.concedente == "Dr. Paulo Guimarães") {
+
+      await new Promise(resolve => setTimeout(resolve, 5000)); // espera 5 segundos
+      await page.click('input[id="atividade:85:j_idt246:1"]');
+      await page.click('input[id="atividade:95:j_idt246:1"]');
+
+      //atividades extras
+      await new Promise(resolve => setTimeout(resolve, 5000)); // espera 5 segundos
+      await page.click('#j_idt253');
+      await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
+      await page.waitForSelector('#atvdSug'); // Aguarda o campo estar disponível
+      await page.evaluate(() => {
+        document.querySelector('#atvdSug').value = 'GERENCIA ATIVIDADES DA CONCEDENTE COM AUXÍLIO DE SOFTWARE.';
+      });
+      await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
+      await page.waitForSelector('#respSug', { visible: true }); // Espera o seletor após o clique
+      await page.select('#respSug', 'RCA'); //REALIZOU COM AUXILIO
+      await new Promise(resolve => setTimeout(resolve, 1000)); // espera 5 segundos
+      await page.waitForSelector('#j_idt260', { visible: true });
+      await page.click('#j_idt260');
+
+      //atividades extras
+      // await new Promise(resolve => setTimeout(resolve, 5000)); // espera 5 segundos
+      // await page.click('#j_idt253');
+      await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
+      await page.waitForSelector('#atvdSug'); // Aguarda o campo estar disponível
+      await page.evaluate(() => {
+        document.querySelector('#atvdSug').value = 'DESENVOLVE ATIVIDADES DE SOCIAL MEDIA.';
+      });
+      await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
+      await page.waitForSelector('#respSug', { visible: true }); // Espera o seletor após o clique
+      await page.select('#respSug', 'RCA'); //REALIZOU COM AUXILIO
+      await new Promise(resolve => setTimeout(resolve, 1000)); // espera 5 segundos
+      await page.waitForSelector('#j_idt260', { visible: true });
+      await page.click('#j_idt260');
+
+
+    } else if (aluno.concedente == "Superpreparado") {
+
+      await new Promise(resolve => setTimeout(resolve, 5000)); // espera 5 segundos
+      await page.click('input[id="atividade:85:j_idt246:1"]');
+
+      //atividades extras
+      await new Promise(resolve => setTimeout(resolve, 5000)); // espera 5 segundos
+      await page.click('#j_idt253');
+      await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
+      await page.waitForSelector('#atvdSug'); // Aguarda o campo estar disponível
+      await page.evaluate(() => {
+        document.querySelector('#atvdSug').value = 'REALIZA EDIÇÃO DE VÍDEOS PARA MARKETING DA CONCEDENTE.';
+      });
+      await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
+      await page.waitForSelector('#respSug', { visible: true }); // Espera o seletor após o clique
+      await page.select('#respSug', 'RCA'); //REALIZOU COM AUXILIO
+      await new Promise(resolve => setTimeout(resolve, 1000)); // espera 5 segundos
+      await page.waitForSelector('#j_idt260', { visible: true });
+      await page.click('#j_idt260');
+
+      //atividades extras
+      // await new Promise(resolve => setTimeout(resolve, 5000)); // espera 5 segundos
+      // await page.click('#j_idt253');
+      await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
+      await page.waitForSelector('#atvdSug'); // Aguarda o campo estar disponível
+      await page.evaluate(() => {
+        document.querySelector('#atvdSug').value = 'ESTUDO SOBRE AGENTE DE INTELIGÊNCIA ARTIFICIAL';
+      });
+      await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
+      await page.waitForSelector('#respSug', { visible: true }); // Espera o seletor após o clique
+      await page.select('#respSug', 'RCA'); //REALIZOU COM AUXILIO
+      await new Promise(resolve => setTimeout(resolve, 1000)); // espera 5 segundos
+      await page.waitForSelector('#j_idt260', { visible: true });
+      await page.click('#j_idt260');
+
+      //atividades extras
+      // await new Promise(resolve => setTimeout(resolve, 5000)); // espera 5 segundos
+      // await page.click('#j_idt253');
+      await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
+      await page.waitForSelector('#atvdSug'); // Aguarda o campo estar disponível
+      await page.evaluate(() => {
+        document.querySelector('#atvdSug').value = 'REALIZA DESIGN UTILIZANDO A FERRAMENTA CANVA.';
+      });
+      await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
+      await page.waitForSelector('#respSug', { visible: true }); // Espera o seletor após o clique
+      await page.select('#respSug', 'RCA'); //REALIZOU COM AUXILIO
+      await new Promise(resolve => setTimeout(resolve, 1000)); // espera 5 segundos
+      await page.waitForSelector('#j_idt260', { visible: true });
+      await page.click('#j_idt260');
 
     } else if (aluno.concedente == "Gráfica Tavares") {
 
@@ -214,6 +370,13 @@ import alunos from './datas_alunos.js';
       await page.click('input[id="atividade:139:j_idt246:1"]');
       await page.click('input[id="atividade:161:j_idt246:1"]');
 
+    } else if (aluno.concedente == "Neon Center") {
+
+      await new Promise(resolve => setTimeout(resolve, 5000)); // espera 5 segundos
+      await page.click('input[id="atividade:85:j_idt246:1"]');
+
+      // INSERIR MAIS INFORMAÇÕES QUANDO A ESTAGIARIA ESTIVER DESENVOLVENDO AS ATIVIDADES
+
     } else if (aluno.concedente == "Ifce") {
 
       await new Promise(resolve => setTimeout(resolve, 5000)); // espera 5 segundos
@@ -222,10 +385,12 @@ import alunos from './datas_alunos.js';
       await page.click('input[id="atividade:124:j_idt246:1"]');
       await page.click('input[id="atividade:150:j_idt246:1"]');
 
-    } else if (aluno.concedente == "Quarto de Idéias") {
-      if (aluno.value_aluno == 2618165 ||
-        aluno.value_aluno == 4046432 ||
-        aluno.value_aluno == 3988045) { // bia, andressa e gabriel social media
+    } else if (aluno.concedente == "Dr. Growth") {
+      if (aluno.value_aluno == 2614575 || aluno.value_aluno == 2469678) {//fernando 
+
+        await new Promise(resolve => setTimeout(resolve, 5000)); // espera 5 segundos
+        await page.click('input[id="atividade:95:j_idt246:1"]');
+
 
         //atividades extras
         await new Promise(resolve => setTimeout(resolve, 5000)); // espera 5 segundos
@@ -233,7 +398,7 @@ import alunos from './datas_alunos.js';
         await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
         await page.waitForSelector('#atvdSug'); // Aguarda o campo estar disponível
         await page.evaluate(() => {
-          document.querySelector('#atvdSug').value = 'REALIZA ATIVIDADES VOLTADAS PARA SOCIAL MEDIA DE CLIENTES DA CONCEDENTE';
+          document.querySelector('#atvdSug').value = 'Desenvolve atividades de social media para os clientes da concedente.';
         });
         await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
         await page.waitForSelector('#respSug', { visible: true }); // Espera o seletor após o clique
@@ -241,13 +406,42 @@ import alunos from './datas_alunos.js';
         await new Promise(resolve => setTimeout(resolve, 1000)); // espera 5 segundos
         await page.waitForSelector('#j_idt260', { visible: true });
         await page.click('#j_idt260');
-      } else { // isabele e edu
+
+        //atividades extras
+        // await new Promise(resolve => setTimeout(resolve, 5000)); // espera 5 segundos
+        // await page.click('#j_idt253');
+        await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
+        await page.waitForSelector('#atvdSug'); // Aguarda o campo estar disponível
+        await page.evaluate(() => {
+          document.querySelector('#atvdSug').value = 'Desenvolve atividade seguindo metodologia ágil(Trello).';
+        });
+        await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
+        await page.waitForSelector('#respSug', { visible: true }); // Espera o seletor após o clique
+        await page.select('#respSug', 'RCA'); //REALIZOU COM AUXILIO
+        await new Promise(resolve => setTimeout(resolve, 1000)); // espera 5 segundos
+        await page.waitForSelector('#j_idt260', { visible: true });
+        await page.click('#j_idt260');
+
+        //atividades extras
+        // await new Promise(resolve => setTimeout(resolve, 5000)); // espera 5 segundos
+        // await page.click('#j_idt253');
+        await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
+        await page.waitForSelector('#atvdSug'); // Aguarda o campo estar disponível
+        await page.evaluate(() => {
+          document.querySelector('#atvdSug').value = 'Edita vídeos com a plataforma CapCut.';
+        });
+        await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
+        await page.waitForSelector('#respSug', { visible: true }); // Espera o seletor após o clique
+        await page.select('#respSug', 'RCA'); //REALIZOU COM AUXILIO
+        await new Promise(resolve => setTimeout(resolve, 1000)); // espera 5 segundos
+        await page.waitForSelector('#j_idt260', { visible: true });
+        await page.click('#j_idt260');
+
+      } else {//luiz antonio
+
         await new Promise(resolve => setTimeout(resolve, 5000)); // espera 5 segundos
-        await page.click('input[id="atividade:23:j_idt246:1"]');
-        await page.click('input[id="atividade:32:j_idt246:1"]');
-        await page.click('input[id="atividade:54:j_idt246:1"]');
-        await page.click('input[id="atividade:90:j_idt246:1"]');
-        await page.click('input[id="atividade:150:j_idt246:1"]');
+        await page.click('input[id="atividade:95:j_idt246:1"]');
+        await page.click('input[id="atividade:137:j_idt246:1"]');
 
         //atividades extras
         await new Promise(resolve => setTimeout(resolve, 5000)); // espera 5 segundos
@@ -255,7 +449,22 @@ import alunos from './datas_alunos.js';
         await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
         await page.waitForSelector('#atvdSug'); // Aguarda o campo estar disponível
         await page.evaluate(() => {
-          document.querySelector('#atvdSug').value = 'REALIZA ATIVIDADES VOLTADAS DESENVOLVIMENTO WEB E PROTOTIPAÇÃO';
+          document.querySelector('#atvdSug').value = 'Desenvolve atividade seguindo metodologia ágil(Trello).';
+        });
+        await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
+        await page.waitForSelector('#respSug', { visible: true }); // Espera o seletor após o clique
+        await page.select('#respSug', 'RCA'); //REALIZOU COM AUXILIO
+        await new Promise(resolve => setTimeout(resolve, 1000)); // espera 5 segundos
+        await page.waitForSelector('#j_idt260', { visible: true });
+        await page.click('#j_idt260');
+
+        //atividades extras
+        // await new Promise(resolve => setTimeout(resolve, 5000)); // espera 5 segundos
+        // await page.click('#j_idt253');
+        await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
+        await page.waitForSelector('#atvdSug'); // Aguarda o campo estar disponível
+        await page.evaluate(() => {
+          document.querySelector('#atvdSug').value = 'Cria design utilizando a ferramenta de prototipação figma.';
         });
         await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
         await page.waitForSelector('#respSug', { visible: true }); // Espera o seletor após o clique
@@ -265,8 +474,6 @@ import alunos from './datas_alunos.js';
         await page.click('#j_idt260');
       }
     }
-
-
     //o aluno atende aos requisitos da concedente
     // //o alunos[1] atende aos requisitos da concedente
     await new Promise(resolve => setTimeout(resolve, 6000)); // espera 5 segundos
@@ -322,7 +529,7 @@ import alunos from './datas_alunos.js';
     await page.evaluate(() => {
       window.scrollBy(0, 0);
     });
-    console.log(`Cadastro finalizado: ${aluno.nome}`)
+    console.log(`Cadastro finalizado: ${aluno?.nome}`)
   }
   totalAlunos++;
   page.on('console', msg => console.log('PAGE LOG:', msg.text()));
