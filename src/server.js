@@ -9,10 +9,10 @@ import alunos from './datas_alunos.js';
   await page.goto('https://sice-orientador.seduc.ce.gov.br/sice-orientador/login.jsf');
 
   // Preenche o campos de login
-  await page.type('#formTable\\:j_idt132\\:txtlg', '06823800321');
-  await page.type('#formTable\\:j_idt142\\:txtpw', 'ac0221');// Substitua '#campoSenha' pelo seletor correto do campo de senha
+  await page.type('#formTable\\:j_idt109\\:txtlg', '06823800321');
+  await page.type('#formTable\\:j_idt119\\:txtpw', 'ac0221');// Substitua '#campoSenha' pelo seletor correto do campo de senha
   // Clica no botão (por exemplo, botão de login)
-  await page.click('#formTable\\:j_idt149\\:j_idt150');  // Substitua '#botaoLogin' pelo seletor correto do botão de login
+  await page.click('#formTable\\:j_idt127\\:j_idt128');  // Substitua '#botaoLogin' pelo seletor correto do botão de login
   // Aguarda a navegação (se a ação de clicar no botão for redirecionar para outra página)
   await page.waitForNavigation();
 
@@ -137,26 +137,51 @@ import alunos from './datas_alunos.js';
 
     } else if
       (aluno.concedente == "Copy Nort" || aluno.concedente == "Ematerce" || aluno.concedente == "Alpha Informática") {
-      await new Promise(resolve => setTimeout(resolve, 5000)); // espera 5 segundos
-      await page.click('input[id="atividade:74:j_idt246:1"]');
-      await page.click('input[id="atividade:101:j_idt246:1"]');
-      await page.click('input[id="atividade:123:j_idt246:1"]');
-      await page.click('input[id="atividade:124:j_idt246:1"]');
+
+      if (aluno.concedente == "Ematerce") {
+        await new Promise(resolve => setTimeout(resolve, 5000)); // espera 5 segundos
+        await page.click('input[id="atividade:74:j_idt246:1"]');
+        await page.click('input[id="atividade:101:j_idt246:1"]');
+        await page.click('input[id="atividade:123:j_idt246:1"]');
+        await page.click('input[id="atividade:124:j_idt246:1"]');
+        await page.click('input[id="atividade:137:j_idt246:1"]');
+
+        await new Promise(resolve => setTimeout(resolve, 5000)); // espera 5 segundos
+        await page.click('#j_idt253');
+        await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
+        await page.waitForSelector('#atvdSug'); // Aguarda o campo estar disponível
+        await page.evaluate(() => {
+          document.querySelector('#atvdSug').value = 'CRIAR DESIGN PARA SOCIAL MEDIA.';
+        });
+        await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
+        await page.waitForSelector('#respSug', { visible: true }); // Espera o seletor após o clique
+        await page.select('#respSug', 'RCA'); //REALIZOU COM AUXILIO
+        await new Promise(resolve => setTimeout(resolve, 1000)); // espera 5 segundos
+        await page.waitForSelector('#j_idt260', { visible: true });
+        await page.click('#j_idt260');
+        await new Promise(resolve => setTimeout(resolve, 5000)); // espera 5 segundos
+      } else {
+        await new Promise(resolve => setTimeout(resolve, 5000)); // espera 5 segundos
+        await page.click('input[id="atividade:74:j_idt246:1"]');
+        await page.click('input[id="atividade:101:j_idt246:1"]');
+        await page.click('input[id="atividade:123:j_idt246:1"]');
+        await page.click('input[id="atividade:124:j_idt246:1"]');
+      }
 
       // Adicionando atividade extra
-      await new Promise(resolve => setTimeout(resolve, 5000)); // espera 5 segundos
-      await page.click('#j_idt253');
-      await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
-      await page.waitForSelector('#atvdSug'); // Aguarda o campo estar disponível
-      await page.evaluate(() => {
-        document.querySelector('#atvdSug').value = 'REALIZOU MANUTENÇÃO CORRETIVA/PREVENTIVA EM COMPUTADORES E IMPRESSORAS';
-      });
-      await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
-      await page.waitForSelector('#respSug', { visible: true }); // Espera o seletor após o clique
-      await page.select('#respSug', 'RCA'); //REALIZOU COM AUXILIO
-      await new Promise(resolve => setTimeout(resolve, 1000)); // espera 5 segundos
-      await page.waitForSelector('#j_idt260', { visible: true });
-      await page.click('#j_idt260');
+      // await new Promise(resolve => setTimeout(resolve, 5000)); // espera 5 segundos
+      // await page.click('#j_idt253');
+      // await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
+      // await page.waitForSelector('#atvdSug'); // Aguarda o campo estar disponível
+      // await page.evaluate(() => {
+      //   document.querySelector('#atvdSug').value = 'REALIZOU MANUTENÇÃO CORRETIVA/PREVENTIVA EM COMPUTADORES E IMPRESSORAS';
+      // });
+      // await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
+      // await page.waitForSelector('#respSug', { visible: true }); // Espera o seletor após o clique
+      // await page.select('#respSug', 'RCA'); //REALIZOU COM AUXILIO
+      // await new Promise(resolve => setTimeout(resolve, 1000)); // espera 5 segundos
+      // await page.waitForSelector('#j_idt260', { visible: true });
+      // await page.click('#j_idt260');
 
     } else if (aluno.concedente == "Sme-Ibiapina") {
       await new Promise(resolve => setTimeout(resolve, 5000)); // espera 5 segundos
@@ -202,8 +227,7 @@ import alunos from './datas_alunos.js';
       await page.click('#j_idt260');
 
     } else if (
-      aluno.concedente == "Quem-Me-Quer" ||
-      aluno.concedente == "Sme-Ubajara") {
+      aluno.concedente == "Quem-Me-Quer") {
 
       await new Promise(resolve => setTimeout(resolve, 5000)); // espera 5 segundos
       await page.click('#j_idt253');
@@ -219,7 +243,23 @@ import alunos from './datas_alunos.js';
       await page.waitForSelector('#j_idt260', { visible: true });
       await page.click('#j_idt260');
 
-    } else if (aluno.concedente == "C-jovem") {
+    } else if (aluno.concedente == "Sme-Ubajara") {
+      if (aluno.value_aluno == 4735008) {//caio
+        await page.click('input[id="atividade:40:j_idt246:1"]');
+        await page.click('input[id="atividade:56:j_idt246:1"]');
+        await page.click('input[id="atividade:85:j_idt246:1"]');
+        await page.click('input[id="atividade:95:j_idt246:1"]');
+      } else {//levy
+        await page.click('input[id="atividade:32:j_idt246:1"]');
+        await page.click('input[id="atividade:41:j_idt246:1"]');
+        await page.click('input[id="atividade:45:j_idt246:1"]');
+        await page.click('input[id="atividade:48:j_idt246:1"]');
+        await page.click('input[id="atividade:107:j_idt246:1"]');
+        await page.click('input[id="atividade:150:j_idt246:1"]');
+      }
+    }
+
+    else if (aluno.concedente == "C-jovem") {
 
       //atividades extras
       await new Promise(resolve => setTimeout(resolve, 5000)); // espera 5 segundos
@@ -374,6 +414,11 @@ import alunos from './datas_alunos.js';
 
       await new Promise(resolve => setTimeout(resolve, 5000)); // espera 5 segundos
       await page.click('input[id="atividade:85:j_idt246:1"]');
+      await page.click('input[id="atividade:55:j_idt246:1"]');
+      await page.click('input[id="atividade:60:j_idt246:1"]');
+      await page.click('input[id="atividade:61:j_idt246:1"]');
+      await page.click('input[id="atividade:65:j_idt246:1"]');
+      await page.click('input[id="atividade:139:j_idt246:1"]');
 
       // INSERIR MAIS INFORMAÇÕES QUANDO A ESTAGIARIA ESTIVER DESENVOLVENDO AS ATIVIDADES
 
@@ -474,6 +519,7 @@ import alunos from './datas_alunos.js';
         await page.click('#j_idt260');
       }
     }
+
     //o aluno atende aos requisitos da concedente
     // //o alunos[1] atende aos requisitos da concedente
     await new Promise(resolve => setTimeout(resolve, 6000)); // espera 5 segundos
