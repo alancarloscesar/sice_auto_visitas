@@ -1,0 +1,13 @@
+await new Promise(resolve => setTimeout(resolve, 5000)); // espera 5 segundos
+await page.click('#j_idt253');
+await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
+await page.waitForSelector('#atvdSug'); // Aguarda o campo estar disponível
+await page.evaluate(() => {
+  document.querySelector('#atvdSug').value = 'EDITAR VÍDEOS UTILIZANDO FERRAMENTA CANVA PARA DIVULGAÇÃO DE PRODUTOS, PROMOÇÕES E SOCIAL MEDIA.';
+});
+await new Promise(resolve => setTimeout(resolve, 3000)); // espera 5 segundos
+await page.waitForSelector('#respSug', { visible: true }); // Espera o seletor após o clique
+await page.select('#respSug', 'RCA'); //REALIZOU COM AUXILIO
+await new Promise(resolve => setTimeout(resolve, 1000)); // espera 5 segundos
+await page.waitForSelector('#j_idt260', { visible: true });
+await page.click('#j_idt260');
