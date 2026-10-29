@@ -6,6 +6,8 @@
   "scripts": {
     "test": "node --test",
     "start": "node src/server.js",
+    "conferir": "node src/server.js --conferir",
+    "diagnosticar-login": "node src/server.js --diagnosticar-login",
     "dev": "node src/server.js"
   },
   "keywords": [],

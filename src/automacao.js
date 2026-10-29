@@ -131,9 +131,15 @@ export async function criarAutomacao(page, timeout = 30000) {
     await selecionar('#lstAlunos', codigo);
     const nomeSelecionado = await page.$eval('#lstAlunos', el => el.selectedOptions[0]?.textContent.trim() || '');
     const normalizar = nome => nome.normalize('NFD').replace(/\p{M}/gu, '').replace(/\s+/gu, ' ').trim().toUpperCase();
-    if (normalizar(nomeSelecionado) !== normalizar(nomeEsperado)) {
+    const esperado = normalizar(nomeEsperado);
+    const selecionado = normalizar(nomeSelecionado);
+    // O SICE pode manter sobrenomes adicionais que ainda não constam na planilha.
+    // Aceita somente o nome da planilha como início do nome oficial; nomes com
+    // diferença no início continuam bloqueados.
+    if (selecionado !== esperado && !selecionado.startsWith(`${esperado} `)) {
       throw new Error(`Value_aluno ${codigo} selecionou "${nomeSelecionado}", mas a planilha informa "${nomeEsperado}". Corrija o código do aluno antes de cadastrar a visita.`);
     }
+    if (selecionado !== esperado) console.log(`Nome confirmado com complemento no SICE: ${nomeSelecionado}`);
   }
 
   async function marcar(seletor) {
@@ -172,7 +178,7 @@ export async function criarAutomacao(page, timeout = 30000) {
     if (mensagens.length) throw new Error(`SICE: ${mensagens.join('; ')}`);
   }
 
-  async function salvar() {
+  async function salvar(antesDoClique = () => {}) {
     await pronto('button#salvar');
     // Mensagens antigas (por exemplo, de uma atividade extra) não confirmam esta visita.
     await page.evaluate(() => {
@@ -180,6 +186,7 @@ export async function criarAutomacao(page, timeout = 30000) {
       window.__siceMensagensAnteriores = new Map([...document.querySelectorAll(seletor)]
         .map(el => [el, el.textContent]));
     });
+    await antesDoClique();
     await clicar('button#salvar', true);
     await verificarErros();
     await page.waitForFunction(() => [...document.querySelectorAll('.ui-messages-info, .ui-growl-message')]

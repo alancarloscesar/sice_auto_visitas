@@ -1,1 +1,3 @@
 node_modules
+controle/*.lock
+controle/*.tmp

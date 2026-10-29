@@ -52,11 +52,12 @@ test('sincroniza AJAX, opções dependentes, atividades e erros sem pausas fixas
     await page.evaluate(() => {
       const campo = document.createElement('select');
       campo.id = 'lstAlunos';
-      campo.innerHTML = '<option value="2676088">MARIA ELIZA CAETANO SABINO</option><option value="3277548">MARIA GISELE PARENTE LIMA</option>';
+      campo.innerHTML = '<option value="2676088">MARIA ELIZA CAETANO SABINO</option><option value="3277548">MARIA GISELE PARENTE LIMA</option><option value="2469229">KAYKY GALDINO DA SILVA DE LIMA</option>';
       document.body.append(campo);
     });
     await assert.rejects(auto.selecionarAluno(2676088, 'MARIA GISELE PARENTE LIMA'), /selecionou "MARIA ELIZA/);
     await auto.selecionarAluno(3277548, 'Maria Gisele Parente Lima');
+    await auto.selecionarAluno(2469229, 'KAYKY GALDINO DA SILVA');
     assert.equal(await page.$eval('#empresa', el => el.options[0].value), '2');
     await auto.selecionar('#empresa', '2');
     await assert.rejects(auto.selecionar('#empresa', '34874', { opcoesCarregadas: true }), /34874.*não está disponível.*2 — Empresa/);

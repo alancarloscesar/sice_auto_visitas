@@ -1,5 +1,6 @@
 // Regras de atividades preservadas do cadastro original.
 export async function preencherAtividades(auto, aluno) {
+  aluno = { ...aluno, concedente: String(aluno.concedente || '').trim().toUpperCase() };
   for (const id of [115, 116, 117]) {
     await auto.marcar(`input[id="atividade:${id}:j_idt246:1"]`);
   }
@@ -49,7 +50,16 @@ export async function preencherAtividades(auto, aluno) {
     await auto.marcar('input[id="atividade:124:j_idt246:1"]');
 
     await auto.atividadeExtra('MANUTENÇÕES CORRETIVAS/PREVENTIVAS EM IMPRESSORAS.');
-  } else if (aluno.concedente == "TIO AUGUSTO") {
+  } else if (aluno.concedente == "COPY NORT INFORMÁTICA") {
+    await auto.marcar('input[id="atividade:74:j_idt246:1"]');
+    await auto.marcar('input[id="atividade:101:j_idt246:1"]');
+    await auto.marcar('input[id="atividade:123:j_idt246:1"]');
+    await auto.marcar('input[id="atividade:124:j_idt246:1"]');
+
+    await auto.atividadeExtra('MANUTENÇÕES CORRETIVAS/PREVENTIVAS EM IMPRESSORAS.');
+  }
+
+  else if (aluno.concedente == "TIO AUGUSTO") {
     await auto.marcar('input[id="atividade:15:j_idt246:1"]');
     await auto.marcar('input[id="atividade:33:j_idt246:1"]');
     await auto.marcar('input[id="atividade:95:j_idt246:1"]');
@@ -95,13 +105,13 @@ export async function preencherAtividades(auto, aluno) {
 
 
     await auto.atividadeExtra('REALIZA DESIGN UTILIZANDO A FERRAMENTA CANVA.');
-  } else if (aluno.concedente == "Gráfica Tavares") {
+  } else if (aluno.concedente == "GRÁFICA TAVARES") {
     await auto.marcar('input[id="atividade:60:j_idt246:1"]');
     await auto.marcar('input[id="atividade:61:j_idt246:1"]');
     await auto.marcar('input[id="atividade:65:j_idt246:1"]');
     await auto.marcar('input[id="atividade:139:j_idt246:1"]');
     await auto.marcar('input[id="atividade:161:j_idt246:1"]');
-  } else if (aluno.concedente == "MARCELO - ponto neon") {
+  } else if (aluno.concedente == "MARCELO - PONTO NEON") {
     await auto.marcar('input[id="atividade:85:j_idt246:1"]');
     await auto.marcar('input[id="atividade:55:j_idt246:1"]');
     await auto.marcar('input[id="atividade:60:j_idt246:1"]');

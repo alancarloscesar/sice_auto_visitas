@@ -1,0 +1,47 @@
+{
+  "url": "https://sice-orientador.seduc.ce.gov.br/sice-orientador/login.jsf",
+  "titulo": "LOGIN :: SICE - Sistema Informatizado de Captação e Estágios",
+  "campos": [
+    {
+      "id": "",
+      "type": "hidden",
+      "name": "formPanel"
+    },
+    {
+      "id": "j_id1:javax.faces.ViewState:0",
+      "type": "hidden",
+      "name": "javax.faces.ViewState"
+    },
+    {
+      "id": "",
+      "type": "hidden",
+      "name": "formError"
+    },
+    {
+      "id": "j_id1:javax.faces.ViewState:4",
+      "type": "hidden",
+      "name": "javax.faces.ViewState"
+    },
+    {
+      "id": "",
+      "type": "hidden",
+      "name": "formTable"
+    },
+    {
+      "id": "formTable:j_idt108:txtlg",
+      "type": "text",
+      "name": "formTable:j_idt108:txtlg"
+    },
+    {
+      "id": "formTable:j_idt115:txtpw",
+      "type": "password",
+      "name": "formTable:j_idt115:txtpw"
+    },
+    {
+      "id": "j_id1:javax.faces.ViewState:8",
+      "type": "hidden",
+      "name": "javax.faces.ViewState"
+    }
+  ],
+  "texto": " 29/10/2026 Sistema Informatizado de Captação e Estágios SICE - SEDUC Área Restrita Login: Senha: Enviar Esqueceu a senha? © 2016 - Governo do Estado do Ceará - Todos os direitos reservados"
+}

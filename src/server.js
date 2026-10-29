@@ -3,83 +3,87 @@ import alunos from './datas_alunos.js';
 import { criarAutomacao } from './automacao.js';
 import { preencherAtividades } from './atividades.js';
 
+import { fileURLToPath } from 'node:url';
+import fs from 'node:fs';
+import { lerHistorico, planejar, executarLote, relatorio, bloquearExecucao } from './controle.js';
+
 const URL_BASE = 'https://sice-orientador.seduc.ce.gov.br/sice-orientador';
 const OBSERVACAO = 'O ALUNO(A) ATENDE AOS REQUISITOS DA CONCEDENTE';
+const HISTORICO = fileURLToPath(new URL('../controle/historico.json', import.meta.url));
+const RELATORIOS = fileURLToPath(new URL('../relatorios', import.meta.url));
+const BLOQUEIO = fileURLToPath(new URL('../controle/execucao.lock', import.meta.url));
+const DIAGNOSTICO_LOGIN = fileURLToPath(new URL('../relatorios/diagnostico-login.json', import.meta.url));
+
+async function registrarDiagnosticoLogin(page) {
+  const dados = await page.evaluate(() => ({
+    url: location.href,
+    titulo: document.title,
+    campos: [...document.querySelectorAll('input')].map(el => ({ id: el.id, type: el.type, name: el.name })),
+    botoes: [...document.querySelectorAll('button, input[type="submit"]')].map(el => ({ id: el.id, texto: el.textContent.trim(), type: el.type })),
+    texto: document.body?.innerText?.replace(/\s+/gu, ' ').slice(0, 1_000) || '',
+  })).catch(() => ({ url: page.url(), indisponivel: true }));
+  fs.mkdirSync(RELATORIOS, { recursive: true });
+  fs.writeFileSync(DIAGNOSTICO_LOGIN, JSON.stringify(dados, null, 2));
+  await page.screenshot({ path: fileURLToPath(new URL('../relatorios/diagnostico-login.png', import.meta.url)), fullPage: true }).catch(() => {});
+  return dados;
+}
 
 async function main() {
+  const previa = process.argv.includes('--conferir');
   const verificarAbertura = process.argv.includes('--verificar-abertura');
+  const diagnosticarLogin = process.argv.includes('--diagnosticar-login');
   const verificarConcedente = process.argv.find(arg => arg.startsWith('--verificar-concedente='))?.split('=')[1];
-  const ativos = alunos.filter(aluno => verificarConcedente ? String(aluno.value_aluno) === verificarConcedente : aluno.ativo == 1)
-    .sort((a, b) => a.nome < b.nome ? -1 : a.nome > b.nome ? 1 : 0);
-  if (!ativos.length) { console.log('Nenhum aluno ativo.'); return; }
-
-  // Valida o lote antes do login, evitando descobrir dados faltantes depois
-  // de já ter cadastrado parte dos alunos.
-  const pendencias = ativos.flatMap(aluno => [
-    ['Value_aluno', aluno.value_aluno],
-    ['Value_concedente', aluno.value_concedente],
-  ].filter(([, valor]) => valor === null || valor === undefined || String(valor).trim() === '')
-    .map(([campo]) => `${aluno.nome}: preencha ${campo}`));
-  if (pendencias.length && !verificarAbertura && !verificarConcedente) {
-    throw new Error(`Dados incompletos na planilha. Nenhum cadastro iniciado.\n${pendencias.join('\n')}`);
-  }
-
-  const browser = await puppeteer.launch({ headless: false });
-  const page = await browser.newPage();
-  const auto = await criarAutomacao(page);
-  if (verificarAbertura) {
-    page.on('pageerror', error => console.error('Erro JavaScript do portal:', error.message));
-    page.on('request', req => {
-      if (['xhr', 'fetch'].includes(req.resourceType())) console.log('AJAX:', req.method(), new URL(req.url()).pathname.split(';')[0]);
-    });
-  }
-  let atual;
-  let total = 0;
+  const diagnostico = verificarAbertura || verificarConcedente || diagnosticarLogin;
+  const liberar = previa || diagnostico ? () => {} : bloquearExecucao(BLOQUEIO);
+  let browser;
+  let itens;
+  let falhaGeral;
   try {
+    const historico = lerHistorico(HISTORICO);
+    itens = planejar(alunos, historico);
+    if (previa || (!diagnostico && !itens.some(i => i.status === 'aguardando'))) return;
+    browser = await puppeteer.launch({ headless: false });
+    const page = await browser.newPage();
+    const auto = await criarAutomacao(page);
     await page.goto(URL_BASE + '/login.jsf', { waitUntil: 'domcontentloaded' });
-    await auto.preencher('#formTable\\:j_idt116\\:txtlg', process.env.SICE_LOGIN || '06823800321');
-    await auto.preencher('#formTable\\:j_idt123\\:txtpw', process.env.SICE_SENHA || 'ac0221');
-    // Registra a espera ANTES do clique para não perder a navegação.
-    await auto.pronto('#formTable\\:j_idt130\\:j_idt131');
-    await Promise.all([
-      page.waitForNavigation({ waitUntil: 'domcontentloaded' }),
-      page.click('#formTable\\:j_idt130\\:j_idt131'),
-    ]);
+    if (diagnosticarLogin) {
+      console.log('Diagnóstico do login:', await registrarDiagnosticoLogin(page));
+      console.log('Nenhuma credencial foi enviada e nenhuma visita foi salva.');
+      return;
+    }
+    console.log('Faça o login manualmente no navegador aberto. A automação continuará assim que o SICE liberar o menu.');
+    // Sem limite: a pessoa pode digitar a senha, usar autenticação adicional
+    // ou resolver qualquer etapa legítima do portal no próprio navegador.
+    await page.waitForFunction(() => location.pathname !== '/sice-orientador/login.jsf'
+      && !!document.querySelector('a.ui-menuitem-link.ui-submenu-link'), { timeout: 0 });
     await auto.pronto('a.ui-menuitem-link.ui-submenu-link');
     await page.goto(URL_BASE + '/paginas/geral/avaliacao-visita.jsf', { waitUntil: 'domcontentloaded' });
 
-    for (const aluno of ativos) {
-      atual = aluno.nome;
-      console.log('Iniciando: ' + atual);
-      // Mantém o formulário limpo entre alunos, sem pausas arbitrárias.
-      if (total > 0) await page.reload({ waitUntil: 'domcontentloaded' });
-      if (verificarAbertura) await page.evaluate(() => {
-        window.__cliquesDiagnostico = [];
-        document.addEventListener('click', event => window.__cliquesDiagnostico.push({ id: event.target.id, tag: event.target.tagName }), true);
-      });
+
+    if (diagnostico) {
       await auto.abrirCadastro();
-      if (verificarAbertura) {
-        console.log('Verificação concluída: formulário de cadastro aberto. Nenhuma visita foi preenchida ou salva.');
-        await browser.close();
-        return;
-      }
-      await auto.selecionar('#ano', '2026');
       if (verificarConcedente) {
-        console.log('Alunos correspondentes no SICE:', await page.$eval('#lstAlunos', (el, nomes) => [...el.options]
-          .filter(op => nomes.some(nome => op.textContent.toUpperCase().includes(nome.toUpperCase())))
-          .map(op => ({ codigo: op.value, nome: op.textContent.trim() })), ativos.map(item => item.nome)));
-      }
-      await auto.selecionarAluno(aluno.value_aluno, aluno.nome);
-      if (verificarConcedente) {
+        const aluno = alunos.find(a => String(a.value_aluno) === verificarConcedente);
+        if (!aluno) throw new Error('Aluno não encontrado na planilha');
+        const ano = aluno.data_visita ? new Date(aluno.data_visita).getUTCFullYear() : new Date().getFullYear();
+        await auto.selecionar('#ano', String(ano));
+        await auto.selecionarAluno(aluno.value_aluno, aluno.nome);
         await auto.pronto('#j_idt222');
         console.log('Concedentes disponíveis:', await page.$eval('#j_idt222', el => [...el.options].map(op => ({ codigo: op.value, nome: op.textContent.trim() }))));
-        console.log('Verificação concluída. Nenhuma visita salva.');
-        await browser.close();
-        return;
       }
+      console.log('Verificação concluída. Nenhuma visita salva.');
+      return;
+    }
+    await executarLote(itens, historico, HISTORICO, async (item, antesDoClique) => {
+      const aluno = item.aluno;
+      console.log('Iniciando: ' + aluno.nome);
+      // Uma página limpa evita carregar dados ou erros do aluno anterior.
+      await page.goto(URL_BASE + '/paginas/geral/avaliacao-visita.jsf', { waitUntil: 'domcontentloaded' });
+      await auto.abrirCadastro();
+      await auto.selecionar('#ano', item.data.slice(0, 4));
+      await auto.selecionarAluno(aluno.value_aluno, aluno.nome);
       await auto.selecionar('#j_idt222', aluno.value_concedente, { opcoesCarregadas: true });
-
-      const data = new Date(aluno.data_visita);
+      const data = new Date(item.data + "T00:00:00Z");
       if (Number.isNaN(data.getTime())) throw new Error('Data de visita inválida');
       const formatada = [data.getUTCDate(), data.getUTCMonth() + 1, data.getUTCFullYear()]
         .map((parte, i) => i < 2 ? String(parte).padStart(2, '0') : parte).join('/');
@@ -93,27 +97,27 @@ async function main() {
         await auto.marcar(`input[id="criterio:${criterio}:j_idt287:${resposta}"]`);
       }
       await auto.preencher('#obsAA', OBSERVACAO);
-      await auto.salvar();
-      total++;
-      console.log('Cadastro finalizado: ' + atual);
-    }
-    console.log('Total de alunos: ' + total);
-    await browser.close();
+
+      await auto.salvar(antesDoClique);
+    });
   } catch (error) {
-    if (verificarAbertura) {
-      console.log('Diagnóstico do clique:', await page.evaluate(() => ({
-        cliques: window.__cliquesDiagnostico,
-        monitor: window.__siceRequests,
-        novo: document.querySelector('#novo')?.outerHTML,
-        formularios: [...document.forms].map(el => el.id),
-      })).catch(() => 'Página indisponível'));
-      await page.screenshot({ path: 'diagnostico-abertura.png' }).catch(() => {});
+    if (browser && /formTable.*txtlg/.test(error.message)) {
+      console.error('Diagnóstico do login:', await registrarDiagnosticoLogin((await browser.pages())[0]).catch(() => 'Não foi possível registrar.'));
     }
-    console.error('Processo interrompido' + (atual ? ' no aluno ' + atual : ' no login') + ': ' + error.message);
-    console.error('Cadastros confirmados: ' + total + '. O navegador ficará aberto para conferência.');
-    // Não repete automaticamente um salvamento, evitando cadastros duplicados.
-    process.exitCode = 1;
-    browser.disconnect();
+    falhaGeral = error;
+    console.error('Execução interrompida: ' + error.message);
+    if (itens) for (const item of itens.filter(i => i.status === 'aguardando')) item.motivo = 'Não processado: ' + error.message;
+  } finally {
+    try {
+      if (browser) {
+        if (falhaGeral || itens?.some(i => ['erro', 'conferir'].includes(i.status))) {
+          browser.disconnect();
+          console.log('Navegador mantido aberto para conferência.');
+        } else await browser.close();
+      }
+      if (itens && !diagnostico) relatorio(itens, RELATORIOS, previa);
+      if (falhaGeral || (!previa && !diagnostico && itens?.some(i => ['erro', 'conferir', 'aguardando'].includes(i.status)))) process.exitCode = 1;
+    } finally { liberar(); }
   }
 }
 

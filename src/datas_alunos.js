@@ -32,7 +32,7 @@ async function readExcelFile() {
     }));
 
   } catch (error) {
-    console.error('Erro ao ler a planilha:', error);
+    throw new Error(`Erro ao ler a planilha: ${error.message}`, { cause: error });
   }
 }
 

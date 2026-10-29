@@ -1,0 +1,530 @@
+{
+  "versao": 1,
+  "visitas": {
+    "3741720|2026-09-14": {
+      "nome": "ALEAN SOUSA PAIVA",
+      "data": "2026-09-14",
+      "concedente": 28209,
+      "status": "informado_usuario",
+      "origem": "Usuário confirmou em 28/09/2026 que os cadastros de setembro foram concluídos. Não é consulta ao SICE."
+    },
+    "5257044|2026-09-14": {
+      "nome": "ALOISIO FRANCISCO VASCONCELOS SOUSA",
+      "data": "2026-09-14",
+      "concedente": 28209,
+      "status": "informado_usuario",
+      "origem": "Usuário confirmou em 28/09/2026 que os cadastros de setembro foram concluídos. Não é consulta ao SICE."
+    },
+    "3138903|2026-09-02": {
+      "nome": "ANA BEATRIZ SILVA SOUSA",
+      "data": "2026-09-02",
+      "concedente": 40526,
+      "status": "informado_usuario",
+      "origem": "Usuário confirmou em 28/09/2026 que os cadastros de setembro foram concluídos. Não é consulta ao SICE."
+    },
+    "2622732|2026-09-10": {
+      "nome": "ANA LARA GOMES SILVA",
+      "data": "2026-09-10",
+      "concedente": 37969,
+      "status": "informado_usuario",
+      "origem": "Usuário confirmou em 28/09/2026 que os cadastros de setembro foram concluídos. Não é consulta ao SICE."
+    },
+    "2546120|2026-09-02": {
+      "nome": "ANA LARISSA SILVA MENESES",
+      "data": "2026-09-02",
+      "concedente": 30172,
+      "status": "informado_usuario",
+      "origem": "Usuário confirmou em 28/09/2026 que os cadastros de setembro foram concluídos. Não é consulta ao SICE."
+    },
+    "3389371|2026-09-10": {
+      "nome": "ANA PAULA SILVA DO NASCIMENTO",
+      "data": "2026-09-10",
+      "concedente": 20622,
+      "status": "informado_usuario",
+      "origem": "Usuário confirmou em 28/09/2026 que os cadastros de setembro foram concluídos. Não é consulta ao SICE."
+    },
+    "5256919|2026-09-10": {
+      "nome": "ARTHUR LUIS LOPES DAMASCENO",
+      "data": "2026-09-10",
+      "concedente": 20622,
+      "status": "informado_usuario",
+      "origem": "Usuário confirmou em 28/09/2026 que os cadastros de setembro foram concluídos. Não é consulta ao SICE."
+    },
+    "4985871|2026-09-09": {
+      "nome": "AYNSSA TAMMYR ARAUJO CUNHA",
+      "data": "2026-09-09",
+      "concedente": 38700,
+      "status": "informado_usuario",
+      "origem": "Usuário confirmou em 28/09/2026 que os cadastros de setembro foram concluídos. Não é consulta ao SICE."
+    },
+    "2460499|2026-09-22": {
+      "nome": "BRENO DA SILVA COSTA",
+      "data": "2026-09-22",
+      "concedente": 40438,
+      "status": "informado_usuario",
+      "origem": "Usuário confirmou em 28/09/2026 que os cadastros de setembro foram concluídos. Não é consulta ao SICE."
+    },
+    "3483885|2026-09-02": {
+      "nome": "CLARISE LIMA DO NASCIMENTO",
+      "data": "2026-09-02",
+      "concedente": 30172,
+      "status": "informado_usuario",
+      "origem": "Usuário confirmou em 28/09/2026 que os cadastros de setembro foram concluídos. Não é consulta ao SICE."
+    },
+    "2377615|2026-09-02": {
+      "nome": "DAVI MOREIRA DA COSTA",
+      "data": "2026-09-02",
+      "concedente": 34238,
+      "status": "informado_usuario",
+      "origem": "Usuário confirmou em 28/09/2026 que os cadastros de setembro foram concluídos. Não é consulta ao SICE."
+    },
+    "4451670|2026-09-10": {
+      "nome": "ENZO FERNANDES LIMA",
+      "data": "2026-09-10",
+      "concedente": 38977,
+      "status": "informado_usuario",
+      "origem": "Usuário confirmou em 28/09/2026 que os cadastros de setembro foram concluídos. Não é consulta ao SICE."
+    },
+    "2556156|2026-09-10": {
+      "nome": "FILIPE JOSE MOREIRA DA SILVA",
+      "data": "2026-09-10",
+      "concedente": 40437,
+      "status": "informado_usuario",
+      "origem": "Usuário confirmou em 28/09/2026 que os cadastros de setembro foram concluídos. Não é consulta ao SICE."
+    },
+    "4844208|2026-09-10": {
+      "nome": "FRANCISCO GABRIEL SILVA DO NASCIMENTO",
+      "data": "2026-09-10",
+      "concedente": 29116,
+      "status": "informado_usuario",
+      "origem": "Usuário confirmou em 28/09/2026 que os cadastros de setembro foram concluídos. Não é consulta ao SICE."
+    },
+    "3582671|2026-09-02": {
+      "nome": "HEROS MESQUITA DIAS",
+      "data": "2026-09-02",
+      "concedente": 29911,
+      "status": "informado_usuario",
+      "origem": "Usuário confirmou em 28/09/2026 que os cadastros de setembro foram concluídos. Não é consulta ao SICE."
+    },
+    "3393820|2026-09-10": {
+      "nome": "HIAGO SILVA DE SOUSA",
+      "data": "2026-09-10",
+      "concedente": 29116,
+      "status": "informado_usuario",
+      "origem": "Usuário confirmou em 28/09/2026 que os cadastros de setembro foram concluídos. Não é consulta ao SICE."
+    },
+    "2677350|2026-09-10": {
+      "nome": "IARA LIMA RAMOS",
+      "data": "2026-09-10",
+      "concedente": 37969,
+      "status": "informado_usuario",
+      "origem": "Usuário confirmou em 28/09/2026 que os cadastros de setembro foram concluídos. Não é consulta ao SICE."
+    },
+    "2583861|2026-09-02": {
+      "nome": "JOAO ALLANDER CARVALHO DE OLIVEIRA",
+      "data": "2026-09-02",
+      "concedente": 25212,
+      "status": "informado_usuario",
+      "origem": "Usuário confirmou em 28/09/2026 que os cadastros de setembro foram concluídos. Não é consulta ao SICE."
+    },
+    "5256354|2026-09-14": {
+      "nome": "JOAO MARCELO DE SOUSA EUFRASIO",
+      "data": "2026-09-14",
+      "concedente": 28209,
+      "status": "informado_usuario",
+      "origem": "Usuário confirmou em 28/09/2026 que os cadastros de setembro foram concluídos. Não é consulta ao SICE."
+    },
+    "5160874|2026-09-14": {
+      "nome": "JOAO PEDRO FIRMO DE SOUSA",
+      "data": "2026-09-14",
+      "concedente": 20622,
+      "status": "informado_usuario",
+      "origem": "Usuário confirmou em 28/09/2026 que os cadastros de setembro foram concluídos. Não é consulta ao SICE."
+    },
+    "4927976|2026-09-10": {
+      "nome": "JOSE ALAN SOUSA CARVALHO",
+      "data": "2026-09-10",
+      "concedente": 40437,
+      "status": "informado_usuario",
+      "origem": "Usuário confirmou em 28/09/2026 que os cadastros de setembro foram concluídos. Não é consulta ao SICE."
+    },
+    "3133871|2026-09-14": {
+      "nome": "KAINA SOUSA DA SILVA",
+      "data": "2026-09-14",
+      "concedente": 20622,
+      "status": "informado_usuario",
+      "origem": "Usuário confirmou em 28/09/2026 que os cadastros de setembro foram concluídos. Não é consulta ao SICE."
+    },
+    "2469229|2026-09-02": {
+      "nome": "KAYKY GALDINO DA SILVA",
+      "data": "2026-09-02",
+      "concedente": 25212,
+      "status": "informado_usuario",
+      "origem": "Usuário confirmou em 28/09/2026 que os cadastros de setembro foram concluídos. Não é consulta ao SICE."
+    },
+    "5257024|2026-09-02": {
+      "nome": "LOUISE MARIA VASCONCELOS SOUSA",
+      "data": "2026-09-02",
+      "concedente": 29911,
+      "status": "informado_usuario",
+      "origem": "Usuário confirmou em 28/09/2026 que os cadastros de setembro foram concluídos. Não é consulta ao SICE."
+    },
+    "4232277|2026-09-10": {
+      "nome": "LUCAS WALEF DE ARAUJO FREITAS",
+      "data": "2026-09-10",
+      "concedente": 38977,
+      "status": "informado_usuario",
+      "origem": "Usuário confirmou em 28/09/2026 que os cadastros de setembro foram concluídos. Não é consulta ao SICE."
+    },
+    "2842290|2026-09-22": {
+      "nome": "LUIS VINICIUS COSTA FERREIRA",
+      "data": "2026-09-22",
+      "concedente": 36959,
+      "status": "informado_usuario",
+      "origem": "Usuário confirmou em 28/09/2026 que os cadastros de setembro foram concluídos. Não é consulta ao SICE."
+    },
+    "3161275|2026-09-22": {
+      "nome": "MARIA CLARICE DA SILVA BASILIO",
+      "data": "2026-09-22",
+      "concedente": 32986,
+      "status": "informado_usuario",
+      "origem": "Usuário confirmou em 28/09/2026 que os cadastros de setembro foram concluídos. Não é consulta ao SICE."
+    },
+    "2676088|2026-09-02": {
+      "nome": "MARIA ELIZA CAETANO SABINO",
+      "data": "2026-09-02",
+      "concedente": 29905,
+      "status": "informado_usuario",
+      "origem": "Usuário confirmou em 28/09/2026 que os cadastros de setembro foram concluídos. Não é consulta ao SICE."
+    },
+    "3480805|2026-09-02": {
+      "nome": "MARIA EMILY LIMA TOMAS",
+      "data": "2026-09-02",
+      "concedente": 41517,
+      "status": "informado_usuario",
+      "origem": "Usuário confirmou em 28/09/2026 que os cadastros de setembro foram concluídos. Não é consulta ao SICE."
+    },
+    "3277548|2026-09-10": {
+      "nome": "MARIA GISELE PARENTE LIMA",
+      "data": "2026-09-10",
+      "concedente": 40437,
+      "status": "informado_usuario",
+      "origem": "Usuário confirmou em 28/09/2026 que os cadastros de setembro foram concluídos. Não é consulta ao SICE."
+    },
+    "2553990|2026-09-10": {
+      "nome": "PAULO VITOR MARTINS DE SOUSA",
+      "data": "2026-09-10",
+      "concedente": 29116,
+      "status": "informado_usuario",
+      "origem": "Usuário confirmou em 28/09/2026 que os cadastros de setembro foram concluídos. Não é consulta ao SICE."
+    },
+    "4762128|2026-09-14": {
+      "nome": "PEDRO RICARDO DE SOUSA PEREIRA",
+      "data": "2026-09-14",
+      "concedente": 28209,
+      "status": "informado_usuario",
+      "origem": "Usuário confirmou em 28/09/2026 que os cadastros de setembro foram concluídos. Não é consulta ao SICE."
+    },
+    "5257066|2026-09-09": {
+      "nome": "RENE NOGUEIRA PEREIRA",
+      "data": "2026-09-09",
+      "concedente": 38700,
+      "status": "informado_usuario",
+      "origem": "Usuário confirmou em 28/09/2026 que os cadastros de setembro foram concluídos. Não é consulta ao SICE."
+    },
+    "2686533|2026-09-10": {
+      "nome": "RUAN PABLO DE ARAUJO DA SILVA",
+      "data": "2026-09-10",
+      "concedente": 38977,
+      "status": "informado_usuario",
+      "origem": "Usuário confirmou em 28/09/2026 que os cadastros de setembro foram concluídos. Não é consulta ao SICE."
+    },
+    "2465181|2026-09-02": {
+      "nome": "SAMARA LOPES MARTINIANO",
+      "data": "2026-09-02",
+      "concedente": 34238,
+      "status": "informado_usuario",
+      "origem": "Usuário confirmou em 28/09/2026 que os cadastros de setembro foram concluídos. Não é consulta ao SICE."
+    },
+    "3499270|2026-09-10": {
+      "nome": "THAIS TARGINO CAVALCANTE",
+      "data": "2026-09-10",
+      "concedente": 38977,
+      "status": "informado_usuario",
+      "origem": "Usuário confirmou em 28/09/2026 que os cadastros de setembro foram concluídos. Não é consulta ao SICE."
+    },
+    "2621989|2026-09-22": {
+      "nome": "YASMIM OLIVEIRA DE LIMA",
+      "data": "2026-09-22",
+      "concedente": 40438,
+      "status": "informado_usuario",
+      "origem": "Usuário confirmou em 28/09/2026 que os cadastros de setembro foram concluídos. Não é consulta ao SICE."
+    },
+    "3741720|2026-10-22": {
+      "nome": "ALEAN SOUSA PAIVA",
+      "data": "2026-10-22",
+      "concedente": 28209,
+      "status": "confirmado_sice",
+      "atualizadoEm": "2026-10-29T13:40:17.855Z"
+    },
+    "5257044|2026-10-29": {
+      "nome": "ALOISIO FRANCISCO VASCONCELOS SOUSA",
+      "data": "2026-10-29",
+      "concedente": 28209,
+      "status": "confirmado_sice",
+      "atualizadoEm": "2026-10-29T13:40:24.029Z"
+    },
+    "3138903|2026-10-21": {
+      "nome": "ANA BEATRIZ SILVA SOUSA",
+      "data": "2026-10-21",
+      "concedente": 40526,
+      "status": "confirmado_sice",
+      "atualizadoEm": "2026-10-29T13:40:33.844Z"
+    },
+    "2622732|2026-10-14": {
+      "nome": "ANA LARA GOMES SILVA",
+      "data": "2026-10-14",
+      "concedente": 37969,
+      "status": "confirmado_sice",
+      "atualizadoEm": "2026-10-29T13:40:43.324Z"
+    },
+    "2546120|2026-10-22": {
+      "nome": "ANA LARISSA SILVA MENESES",
+      "data": "2026-10-22",
+      "concedente": 30172,
+      "status": "confirmado_sice",
+      "atualizadoEm": "2026-10-29T13:40:51.470Z"
+    },
+    "3389371|2026-10-14": {
+      "nome": "ANA PAULA SILVA DO NASCIMENTO",
+      "data": "2026-10-14",
+      "concedente": 20622,
+      "status": "confirmado_sice",
+      "atualizadoEm": "2026-10-29T13:41:01.339Z"
+    },
+    "5256919|2026-10-14": {
+      "nome": "ARTHUR LUIS LOPES DAMASCENO",
+      "data": "2026-10-14",
+      "concedente": 20622,
+      "status": "confirmado_sice",
+      "atualizadoEm": "2026-10-29T13:41:09.006Z"
+    },
+    "4985871|2026-10-14": {
+      "nome": "AYNSSA TAMMYR ARAUJO CUNHA",
+      "data": "2026-10-14",
+      "concedente": 38700,
+      "status": "confirmado_sice",
+      "atualizadoEm": "2026-10-29T13:41:19.291Z"
+    },
+    "2460499|2026-10-22": {
+      "nome": "BRENO DA SILVA COSTA",
+      "data": "2026-10-22",
+      "concedente": 40438,
+      "status": "confirmado_sice",
+      "atualizadoEm": "2026-10-29T13:41:25.802Z"
+    },
+    "3483885|2026-10-22": {
+      "nome": "CLARISE LIMA DO NASCIMENTO",
+      "data": "2026-10-22",
+      "concedente": 30172,
+      "status": "confirmado_sice",
+      "atualizadoEm": "2026-10-29T13:41:33.855Z"
+    },
+    "2377615|2026-10-14": {
+      "nome": "DAVI MOREIRA DA COSTA",
+      "data": "2026-10-14",
+      "concedente": 34238,
+      "status": "confirmado_sice",
+      "atualizadoEm": "2026-10-29T13:41:40.637Z"
+    },
+    "4451670|2026-10-14": {
+      "nome": "ENZO FERNANDES LIMA",
+      "data": "2026-10-14",
+      "concedente": 38977,
+      "status": "confirmado_sice",
+      "atualizadoEm": "2026-10-29T13:41:48.966Z"
+    },
+    "2556156|2026-10-22": {
+      "nome": "FILIPE JOSE MOREIRA DA SILVA",
+      "data": "2026-10-22",
+      "concedente": 40437,
+      "status": "confirmado_sice",
+      "atualizadoEm": "2026-10-29T13:41:56.530Z"
+    },
+    "4844208|2026-10-14": {
+      "nome": "FRANCISCO GABRIEL SILVA DO NASCIMENTO",
+      "data": "2026-10-14",
+      "concedente": 29116,
+      "status": "confirmado_sice",
+      "atualizadoEm": "2026-10-29T13:42:05.236Z"
+    },
+    "3582671|2026-10-29": {
+      "nome": "HEROS MESQUITA DIAS",
+      "data": "2026-10-29",
+      "concedente": 27575,
+      "status": "confirmado_sice",
+      "atualizadoEm": "2026-10-29T13:42:14.621Z"
+    },
+    "3393820|2026-10-14": {
+      "nome": "HIAGO SILVA DE SOUSA",
+      "data": "2026-10-14",
+      "concedente": 29116,
+      "status": "confirmado_sice",
+      "atualizadoEm": "2026-10-29T13:42:23.591Z"
+    },
+    "2677350|2026-10-14": {
+      "nome": "IARA LIMA RAMOS",
+      "data": "2026-10-14",
+      "concedente": 37969,
+      "status": "confirmado_sice",
+      "atualizadoEm": "2026-10-29T13:42:34.363Z"
+    },
+    "2583861|2026-10-14": {
+      "nome": "JOAO ALLANDER CARVALHO DE OLIVEIRA",
+      "data": "2026-10-14",
+      "concedente": 25212,
+      "status": "confirmado_sice",
+      "atualizadoEm": "2026-10-29T13:42:41.058Z"
+    },
+    "5256354|2026-10-22": {
+      "nome": "JOAO MARCELO DE SOUSA EUFRASIO",
+      "data": "2026-10-22",
+      "concedente": 28209,
+      "status": "confirmado_sice",
+      "atualizadoEm": "2026-10-29T13:42:47.840Z"
+    },
+    "5160874|2026-10-14": {
+      "nome": "JOAO PEDRO FIRMO DE SOUSA",
+      "data": "2026-10-14",
+      "concedente": 20622,
+      "status": "confirmado_sice",
+      "atualizadoEm": "2026-10-29T13:42:55.552Z"
+    },
+    "4927976|2026-10-22": {
+      "nome": "JOSE ALAN SOUSA CARVALHO",
+      "data": "2026-10-22",
+      "concedente": 40437,
+      "status": "confirmado_sice",
+      "atualizadoEm": "2026-10-29T13:43:02.374Z"
+    },
+    "3133871|2026-10-21": {
+      "nome": "KAINA SOUSA DA SILVA",
+      "data": "2026-10-21",
+      "concedente": 20622,
+      "status": "confirmado_sice",
+      "atualizadoEm": "2026-10-29T13:43:11.159Z"
+    },
+    "5257024|2026-10-29": {
+      "nome": "LOUISE MARIA VASCONCELOS SOUSA",
+      "data": "2026-10-29",
+      "concedente": 29911,
+      "status": "confirmado_sice",
+      "atualizadoEm": "2026-10-29T13:43:23.309Z"
+    },
+    "4232277|2026-10-14": {
+      "nome": "LUCAS WALEF DE ARAUJO FREITAS",
+      "data": "2026-10-14",
+      "concedente": 38977,
+      "status": "confirmado_sice",
+      "atualizadoEm": "2026-10-29T13:43:33.109Z"
+    },
+    "2842290|2026-10-21": {
+      "nome": "LUIS VINICIUS COSTA FERREIRA",
+      "data": "2026-10-21",
+      "concedente": 36959,
+      "status": "confirmado_sice",
+      "atualizadoEm": "2026-10-29T13:43:41.950Z"
+    },
+    "3161275|2026-10-21": {
+      "nome": "MARIA CLARICE DA SILVA BASILIO",
+      "data": "2026-10-21",
+      "concedente": 32986,
+      "status": "confirmado_sice",
+      "atualizadoEm": "2026-10-29T13:43:50.643Z"
+    },
+    "2676088|2026-10-29": {
+      "nome": "MARIA ELIZA CAETANO SABINO",
+      "data": "2026-10-29",
+      "concedente": 29905,
+      "status": "confirmado_sice",
+      "atualizadoEm": "2026-10-29T13:44:00.847Z"
+    },
+    "3480805|2026-10-14": {
+      "nome": "MARIA EMILY LIMA TOMAS",
+      "data": "2026-10-14",
+      "concedente": 41517,
+      "status": "confirmado_sice",
+      "atualizadoEm": "2026-10-29T13:44:10.864Z"
+    },
+    "3277548|2026-10-22": {
+      "nome": "MARIA GISELE PARENTE LIMA",
+      "data": "2026-10-22",
+      "concedente": 40437,
+      "status": "confirmado_sice",
+      "atualizadoEm": "2026-10-29T13:44:20.599Z"
+    },
+    "2553990|2026-10-14": {
+      "nome": "PAULO VITOR MARTINS DE SOUSA",
+      "data": "2026-10-14",
+      "concedente": 29116,
+      "status": "confirmado_sice",
+      "atualizadoEm": "2026-10-29T13:44:30.276Z"
+    },
+    "4762128|2026-10-29": {
+      "nome": "PEDRO RICARDO DE SOUSA PEREIRA",
+      "data": "2026-10-29",
+      "concedente": 28209,
+      "status": "confirmado_sice",
+      "atualizadoEm": "2026-10-29T13:44:37.200Z"
+    },
+    "5257066|2026-10-14": {
+      "nome": "RENE NOGUEIRA PEREIRA",
+      "data": "2026-10-14",
+      "concedente": 38700,
+      "status": "confirmado_sice",
+      "atualizadoEm": "2026-10-29T13:44:47.005Z"
+    },
+    "2686533|2026-10-14": {
+      "nome": "RUAN PABLO DE ARAUJO DA SILVA",
+      "data": "2026-10-14",
+      "concedente": 38977,
+      "status": "confirmado_sice",
+      "atualizadoEm": "2026-10-29T13:44:57.805Z"
+    },
+    "2465181|2026-10-14": {
+      "nome": "SAMARA LOPES MARTINIANO",
+      "data": "2026-10-14",
+      "concedente": 34238,
+      "status": "confirmado_sice",
+      "atualizadoEm": "2026-10-29T13:45:05.837Z"
+    },
+    "3499270|2026-10-14": {
+      "nome": "THAIS TARGINO CAVALCANTE",
+      "data": "2026-10-14",
+      "concedente": 38977,
+      "status": "confirmado_sice",
+      "atualizadoEm": "2026-10-29T13:45:15.397Z"
+    },
+    "3483855|2026-10-21": {
+      "nome": "VICTOR LIMA DE CARVALHO",
+      "data": "2026-10-21",
+      "concedente": 38995,
+      "status": "confirmado_sice",
+      "atualizadoEm": "2026-10-29T13:45:23.294Z"
+    },
+    "2621989|2026-10-22": {
+      "nome": "YASMIM OLIVEIRA DE LIMA",
+      "data": "2026-10-22",
+      "concedente": 40438,
+      "status": "confirmado_sice",
+      "atualizadoEm": "2026-10-29T13:45:32.135Z"
+    },
+    "2469229|2026-10-14": {
+      "nome": "KAYKY GALDINO DA SILVA",
+      "data": "2026-10-14",
+      "concedente": 25212,
+      "status": "confirmado_sice",
+      "atualizadoEm": "2026-10-29T13:49:46.248Z"
+    }
+  }
+}

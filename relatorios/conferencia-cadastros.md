@@ -1,5 +1,7 @@
 # Conferência nominal de cadastros
 
+Atualização em 28/09/2026: o usuário confirmou a conclusão das visitas de setembro para os 37 alunos com data. Victor não teve visita. A lista abaixo preserva a evidência dos logs anteriores; as 14 ausências de confirmação nesses logs não representam mais pendências de setembro. O controle atual está em `controle/historico.json`, e `npm run conferir` gera a prévia atualizada.
+
 Base: planilha atual e os dois logs enviados, acrescidos da confirmação de Luis Vinicius na última mensagem. Nomes repetidos nos logs foram contados uma única vez. Não houve consulta ao histórico de visitas do SICE. A ausência de confirmação nos logs não prova ausência de cadastro manual ou em outras execuções.
 
 - Alunos na planilha: 38.
